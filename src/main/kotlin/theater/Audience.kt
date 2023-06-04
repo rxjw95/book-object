@@ -1,24 +1,28 @@
 package theater
 
 class Audience(
-    val bag: Bag
+    private val bag: Bag
 ) {
     fun buy(ticket: Ticket): Long {
-        if(bag.hasInvitation()) {
-            bag.ticket = ticket
-        } else {
-            bag.minusAmount(ticket.fee)
-            bag.ticket = ticket
-        }
-        return ticket.fee
+        return bag.putIn(ticket)
     }
 }
 
 class Bag(
-    var amount: Long,
-    val invitation: Invitation? = null
+    private var amount: Long,
+    private val invitation: Invitation? = null
 ) {
-    var ticket: Ticket? = null
+    private var ticket: Ticket? = null
+
+    fun putIn(ticket: Ticket): Long {
+        if(hasInvitation()) {
+            this.ticket = ticket
+        } else {
+            minusAmount(ticket.fee)
+            this.ticket = ticket
+        }
+        return ticket.fee
+    }
 
     fun hasInvitation(): Boolean = invitation != null
 
