@@ -2,7 +2,17 @@ package theater
 
 class Audience(
     val bag: Bag
-)
+) {
+    fun buy(ticket: Ticket): Long {
+        if(bag.hasInvitation()) {
+            bag.ticket = ticket
+        } else {
+            bag.minusAmount(ticket.fee)
+            bag.ticket = ticket
+        }
+        return ticket.fee
+    }
+}
 
 class Bag(
     var amount: Long,
