@@ -7,6 +7,8 @@ class TicketOffice(
 
     fun issue(): Ticket = tickets.removeFirstOrNull() ?: throw NullPointerException("티켓이 모두 소진되었습니다.")
 
+    fun cancel(ticket: Ticket) = tickets.add(ticket)
+
     fun plusAmount(amount: Long) {
         this.amount += amount
     }

@@ -29,6 +29,9 @@ class Bag(
     }
 
     fun minusAmount(amount: Long) {
-        this.amount -= amount
+        if(this.amount.minus(amount) < 0)
+            throw Exception("금액이 부족합니다.")
+        else
+            this.amount -= amount
     }
 }
