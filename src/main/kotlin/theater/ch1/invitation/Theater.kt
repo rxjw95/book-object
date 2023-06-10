@@ -1,4 +1,4 @@
-package theater.invitation
+package theater.ch1.invitation
 
 class Theater(
     val ticketSeller: TicketSeller

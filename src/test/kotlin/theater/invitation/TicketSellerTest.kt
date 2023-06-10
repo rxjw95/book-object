@@ -2,6 +2,7 @@ package theater.invitation
 
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
+import theater.ch1.invitation.*
 import theater.invitation.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
