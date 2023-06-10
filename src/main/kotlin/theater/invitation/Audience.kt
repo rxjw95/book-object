@@ -1,4 +1,4 @@
-package theater
+package theater.invitation
 
 class Audience(
     private val bag: Bag

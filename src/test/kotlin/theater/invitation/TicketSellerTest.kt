@@ -1,8 +1,8 @@
-package theater
+package theater.invitation
 
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
-import kotlin.test.BeforeTest
+import theater.invitation.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

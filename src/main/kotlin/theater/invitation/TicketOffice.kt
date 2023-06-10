@@ -1,4 +1,4 @@
-package theater
+package theater.invitation
 
 class TicketOffice(
     var amount: Long,

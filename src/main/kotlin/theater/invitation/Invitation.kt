@@ -1,4 +1,4 @@
-package theater
+package theater.invitation
 
 import java.time.LocalDateTime
 
