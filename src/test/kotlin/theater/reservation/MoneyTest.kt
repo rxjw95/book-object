@@ -11,30 +11,12 @@ class MoneyTest {
 
     @Nested
     inner class Creation {
-        @Test
-        fun `생성자에 양수를 넣으면 성공`() {
-            assertDoesNotThrow {
-                Money(1)
-            }
-        }
 
         @Test
         fun `wons 정적 메서드에 양수를 넣으면 성공`() {
             assertDoesNotThrow {
                 Money.wons(1)
             }
-        }
-
-        @Test
-        fun `생성자에 음수를 넣으면 RuntimeException`() {
-            val message = assertFailsWith(
-                exceptionClass = RuntimeException::class,
-                block = {
-                    Money(-100)
-                }
-            ).message
-
-            assertEquals("돈은 음수일 수 없습니다.", message)
         }
 
         @Test
@@ -52,7 +34,7 @@ class MoneyTest {
         @Test
         fun `empty 정적 메서드는 0원을 반환`() {
             val emptyMoney = Money.empty()
-            assertEquals(Money(0), emptyMoney)
+            assertEquals(Money.wons(0), emptyMoney)
         }
     }
 
@@ -62,14 +44,14 @@ class MoneyTest {
         @Test
         fun `100원 더하기 100원은 200원`() {
             val money = Money.wons(100)
-            val resultMoney = money.plus(Money(100))
-            assertEquals(Money(200), resultMoney)
+            val resultMoney = money.plus(Money.wons(100))
+            assertEquals(Money.wons(200), resultMoney)
         }
 
         @Test
         fun `100원 빼기 100원은 0원`() {
             val money = Money.wons(100)
-            val resultMoney = money.minus(Money(100))
+            val resultMoney = money.minus(Money.wons(100))
             assertEquals(Money.empty(), resultMoney)
         }
 
@@ -80,7 +62,7 @@ class MoneyTest {
             val assertFailsWith = assertFailsWith(
                 exceptionClass = RuntimeException::class,
                 block = {
-                    money.minus(Money(200))
+                    money.minus(Money.wons(200))
                 }
             )
 
@@ -89,20 +71,20 @@ class MoneyTest {
 
         @Test
         fun `200원은 100원보다 크다`() {
-            val resultBoolean = Money.wons(200).isGreaterThan(Money(100))
+            val resultBoolean = Money.wons(200).isGreaterThan(Money.wons(100))
             assertEquals(true, resultBoolean)
         }
 
         @Test
         fun `100원은 200원보다 작다`() {
-            val resultBoolean = Money.wons(100).isLessThan(Money(200))
+            val resultBoolean = Money.wons(100).isLessThan(Money.wons(200))
             assertEquals(true, resultBoolean)
         }
 
         @Test
         fun `100원에 3을 곱하면 300원`() {
-            val resultMoney = Money.wons(100).times(3)
-            assertEquals(Money(300), resultMoney)
+            val resultMoney = Money.wons(100).times(3.0)
+            assertEquals(Money.wons(300), resultMoney)
         }
     }
 

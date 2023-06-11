@@ -1,8 +1,11 @@
 package theater.ch2.reservation
 
-data class Money(
-    private val value: Int
+import java.math.BigDecimal
+
+data class Money private constructor(
+    private val value: BigDecimal
 ) {
+
     fun plus(money: Money): Money = Money(value.plus(money.value))
     fun minus(money: Money): Money {
         if(value < money.value) {
@@ -10,19 +13,20 @@ data class Money(
         }
         return Money(value.minus(money.value))
     }
-    fun times(percent: Int): Money = Money(value.times(percent))
+
+    fun times(percent: Double): Money = Money(value.times(BigDecimal(percent)))
 
     fun isLessThan(money: Money) = value < money.value
     fun isGreaterThan(money: Money) = value >= money.value
 
     init {
-        if(value < 0) {
+        if(value < BigDecimal.ZERO) {
             throw RuntimeException("돈은 음수일 수 없습니다.")
         }
     }
 
     companion object {
-        fun wons(positive: Int) = Money(positive)
-        fun empty() = Money(0)
+        fun wons(positive: Int) = Money(BigDecimal(positive))
+        fun empty() = Money(BigDecimal(0))
     }
 }
