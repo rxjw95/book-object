@@ -4,8 +4,9 @@ import kotlin.time.Duration
 
 class Movie(
     private val name: String,
-    private val fee: Int,
-    private val runningTime: Duration
+    private val fee: Money,
+    private val runningTime: Duration,
+    private val discountPolicy: DiscountPolicy
 ) {
-    fun calculateMovieFee(audienceCount: Int): Money = Money.wons(fee * audienceCount)
+    fun calculateMovieFee(screening: Screening): Money = fee.minus(discountPolicy.calculateDiscountAmount(screening))
 }
