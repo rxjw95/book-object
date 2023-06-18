@@ -3,7 +3,6 @@ package theater.ch2.reservation.discount.condition
 import theater.ch2.reservation.Screening
 import theater.ch2.reservation.discount.DiscountCondition
 import java.time.DayOfWeek
-import java.time.LocalDateTime
 import java.time.LocalTime
 
 class SequenceCondition(
